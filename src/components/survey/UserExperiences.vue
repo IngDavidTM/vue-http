@@ -6,7 +6,7 @@
         <base-button @click="loadResults" >Load Submitted Experiences</base-button>
       </div>
       <p v-if="isLoading">Loading...</p>
-      <ul v-else>
+      <ul v-else-if="!isLoading && results.length > 0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -14,6 +14,7 @@
           :rating="result.rating"
         ></survey-result>
       </ul>
+      <p v-else-if="!isLoading && (!results || results.length === 0)">No stored experiences found. Start adding some survey results!</p>
     </base-card>
   </section>
 </template>
